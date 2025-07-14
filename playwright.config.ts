@@ -3,6 +3,7 @@ import { defineConfig, devices } from '@playwright/test';
 export default defineConfig({
   testDir: './tests',
   timeout: 30 * 1000,
+   reporter: [['html', { outputFolder: 'playwright-report', open: 'never' }]],
   use: {
     baseURL: 'https://ganneesh.github.io/Playwright_Framework/',
     headless: false,                // Show browser UI
@@ -24,5 +25,5 @@ export default defineConfig({
     //   use: { ...devices['Desktop Safari'] },
     // },
   ],
-  reporter: [['list'], ['html']],
+  
 });
