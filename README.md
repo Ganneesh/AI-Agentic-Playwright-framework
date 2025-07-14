@@ -1,32 +1,80 @@
+# 🤖 AI-Agentic Playwright Framework
 
-# 🧠 AI Agentic Playwright Framework with MCP Architecture
+A real-world **AI-driven Playwright automation framework** using **Groq + LLaMA3**, designed for smart end-to-end testing with features like dynamic test generation, CI pipelines, and Allure reporting.
 
-This project showcases a real-time AI-driven testing framework using Playwright + TypeScript + Groq + LLaMA 3, extended with **MCP (Multi-Component Pipeline)** agents.
+## 🚀 Live Demo Website
+🌐 [Automation Practice Site](https://ganneesh.github.io/Playwright_Framework/#home)
 
-## 🔧 Agents Pipeline
+## 🧠 Key Features
 
-1. ✅ Story Analyzer
-2. ✅ Test Code Generator (LLM via Groq)
-3. ✅ Assertion Generator (placeholder)
-4. ✅ Debug Agent (error handling + logs)
+| Feature                        | Description                                                                 |
+|-------------------------------|-----------------------------------------------------------------------------|
+| ✅ AI Agent (Groq + LLaMA3)   | Auto-generates Playwright steps from a user story                          |
+| 🧪 Playwright Framework       | End-to-end UI automation using modern Playwright test runner               |
+| ⚙️ Multi-Component Pipeline   | Modular architecture: story analyzer, code generator, assertion injector   |
+| 🔐 Secret Management          | Uses GitHub Actions secrets for secure key handling                        |
+| 📦 GitHub Actions CI          | Automated test execution on each push or pull request                      |
+| 📊 Allure Reports             | Interactive HTML test reports for better visibility                        |
+| 📁 Modular Structure          | Clean and scalable TypeScript codebase                                     |
 
-## 🔐 Tested Scenario
+---
 
-Login flow at:
-[https://ganneesh.github.io/Playwright_Framework/#home](https://ganneesh.github.io/Playwright_Framework/#home)
+## 📁 Project Structure
 
-## 🚀 To Run
+├── .github/
+│ └── workflows/
+│ └── playwright.yml # CI pipeline
+├── agents/ # storyAnalyzer, assertionAgent, debugAgent
+├── pipeline/
+│ └── pipelineRunner.ts # orchestrates AI → Playwright execution
+├── tests/
+│ └── ai-generated/ # specs that call the pipeline
+├── utils/
+│ └── aiAgent.ts # Groq API integration
+├── playwright.config.ts # Playwright settings
+└── README.md
 
-1. Add your Groq API key to `.env`
-2. Run:
+---
+
+## ⚙️ Local Setup
+
 ```bash
+git clone https://github.com/Ganneesh/AI-Agentic-Playwright-framework.git
+cd AI-Agentic-Playwright-framework
 npm install
+npx playwright install
+
+## Create a local .env (never commit this):
+
+GROQ_API_KEY=sk-xxxxxxxxxxxxxxxxxxxx
+GROQ_MODEL=llama3-70b-8192
+BASE_URL=https://ganneesh.github.io/Playwright_Framework/
+
+## Headless(Run the test locally)
 npx playwright test
-```
 
-## 📁 Folders
+# Headed (see browser)
+npx playwright test --headed
 
-- `/agents` – individual pipeline logic
-- `/pipeline` – multi-agent runner
-- `/utils` – LLM communication logic
-- `/tests` – AI generated test scenarios
+## 📊 View Allure Report Locally
+# After a local run
+npx allure generate allure-results --clean -o allure-report
+npx allure open allure-report
+
+## 🛠 Tech Stack
+Playwright – Browser automation
+
+Groq – Low‑latency LLM inference
+
+LLaMA 3 – Large Language Model
+
+TypeScript – Typed JavaScript
+
+Allure – Test reporting
+
+GitHub Actions – Continuous Integration
+
+## 📄 License
+Ganesh Shivdas Madane
+
+
