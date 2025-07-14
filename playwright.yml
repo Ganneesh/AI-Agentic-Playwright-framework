@@ -2,9 +2,9 @@ name: Playwright Tests
 
 on:
   push:
-    branches: [ "main", "master" ]
+    branches: [master]
   pull_request:
-    branches: [ "main", "master" ]
+    branches: [master]
   workflow_dispatch:
 
 jobs:
@@ -15,7 +15,7 @@ jobs:
       GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
       GROQ_MODEL: ${{ secrets.GROQ_MODEL }}
       BASE_URL: ${{ secrets.BASE_URL }}
-
+- 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
