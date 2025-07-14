@@ -6,7 +6,7 @@ export default defineConfig({
    reporter: [['html', { outputFolder: 'playwright-report', open: 'never' }]],
   use: {
     baseURL: 'https://ganneesh.github.io/Playwright_Framework/',
-    headless: false,                // Show browser UI
+    headless: true,                // Show browser UI
     trace: 'on',                    // Enable trace viewer
     screenshot: 'only-on-failure', // Optional
     video: 'retain-on-failure',    // Optional
