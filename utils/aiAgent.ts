@@ -1,10 +1,14 @@
 import axios from 'axios';
-import { config } from 'dotenv';
 
-config();
-
-const GROQ_API_KEY = process.env.GROQ_API_KEY!;
+console.log("🔐 API key exists?", !!process.env.GROQ_API_KEY);
+console.log("🤖 Model:", process.env.GROQ_MODEL);
+console.log("🌍 BASE_URL:", process.env.BASE_URL);
+const GROQ_API_KEY = process.env.GROQ_API_KEY || '';
 const GROQ_MODEL = process.env.GROQ_MODEL || 'llama3-70b-8192';
+
+if (!GROQ_API_KEY) {
+  throw new Error('❌ GROQ_API_KEY is not defined!');
+}
 
 export async function generateTestCodeFromStory(story: string): Promise<string> {
   const prompt =`
