@@ -1,7 +1,7 @@
 import { test } from '@playwright/test';
 import { runPipeline } from '../../pipeline/pipelineRunner';
 
-test.describe('🧠 Final MCP Login Test (AI Agent)', () => {
+test.describe('MCP Login Test (AI Agent)', () => {
   test('Run full pipeline with alert', async ({ page }) => {
     const story = `
 Go to https://ganneesh.github.io/Playwright_Framework/#home
