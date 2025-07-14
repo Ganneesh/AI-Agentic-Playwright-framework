@@ -5,10 +5,17 @@ on:
     branches: [master]
   pull_request:
     branches: [master]
+  workflow_dispatch:
 
 jobs:
   test:
     runs-on: ubuntu-latest
+
+    env:  # ✅ Inject secrets globally into all steps
+      GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+      GROQ_MODEL: ${{ secrets.GROQ_MODEL }}
+      BASE_URL: ${{ secrets.BASE_URL }}
+      ALLURE_RESULTS_DIR: allure-results
 
     steps:
       - name: Checkout repository
@@ -31,9 +38,11 @@ jobs:
         run: npm install -D allure-playwright
 
       - name: Run Playwright Tests with Allure
-        run: npx playwright test
-        env:
-          ALLURE_RESULTS_DIR: allure-results
+        run: |
+          echo "🔐 API key exists? ${{ secrets.GROQ_API_KEY != '' }}"
+          echo "🤖 Model: ${{ secrets.GROQ_MODEL }}"
+          echo "🌍 BASE_URL: ${{ secrets.BASE_URL }}"
+          npx playwright test
 
       - name: Debug Allure Results Content
         run: |

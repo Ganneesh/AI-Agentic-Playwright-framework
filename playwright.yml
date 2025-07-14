@@ -2,7 +2,7 @@ name: Playwright Tests
 
 on:
   push:
-    branches: [master]
+    branches: [master]  # or "main" if your branch is named main
   pull_request:
     branches: [master]
   workflow_dispatch:
@@ -10,11 +10,6 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
-
-    env:
-      GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
-      GROQ_MODEL: ${{ secrets.GROQ_MODEL }}
-      BASE_URL: ${{ secrets.BASE_URL }}
 
     steps:
       - name: Checkout code
@@ -32,7 +27,15 @@ jobs:
         run: npx playwright install --with-deps
 
       - name: Run Playwright Tests
-        run: npx playwright test
+        run: |
+          echo "🔐 API key exists? ${{ secrets.GROQ_API_KEY != '' }}"
+          echo "🤖 Model: ${{ secrets.GROQ_MODEL }}"
+          echo "🌍 BASE_URL: ${{ secrets.BASE_URL }}"
+          npx playwright test
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          GROQ_MODEL: ${{ secrets.GROQ_MODEL }}
+          BASE_URL: ${{ secrets.BASE_URL }}
 
       - name: Upload Playwright HTML Report
         if: always()
