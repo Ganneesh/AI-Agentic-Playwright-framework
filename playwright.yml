@@ -15,7 +15,7 @@ jobs:
       GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
       GROQ_MODEL: ${{ secrets.GROQ_MODEL }}
       BASE_URL: ${{ secrets.BASE_URL }}
-- 
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
